@@ -1,1 +1,1 @@
-# Asha-Hope-Amanaki
+Google Apps Script for Sheets
