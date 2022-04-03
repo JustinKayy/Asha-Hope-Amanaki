@@ -20,3 +20,9 @@ function loadEditOrganizationView(){
   return loadPartialHTML_("editOrganization")
 
 }
+
+function loadAddDonationView(){
+
+  return loadPartialHTML_("addDonation")
+
+}
