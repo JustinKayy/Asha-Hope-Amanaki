@@ -132,10 +132,31 @@
         document.getElementById("bagReq").value = organizationInfo.orgBagReq;
         document.getElementById("bagDist").value = organizationInfo.orgBagDist;
         document.getElementById("notes").value = organizationInfo.orgNotes;
-
-
       }).getOrgByName(params.org_Name);
+    }
 
+    function editOrg(){
+        var orgInfo = {};
+        orgInfo.orgContact = document.getElementById("contact").value;
+        orgInfo.orgOwner = document.getElementById("owner").value;
+        orgInfo.orgLocation = document.getElementById("location").value;
+        orgInfo.orgBagReq = document.getElementById("bagReq").value;
+        orgInfo.orgBagDist = document.getElementById("bagDist").value;
+        orgInfo.orgNotes = document.getElementById("notes").value;
+        var name = document.getElementById("name").value;
+      google.script.run.withSuccessHandler(function(res){}).editOrgByName(name, orgInfo);
+    }
+
+    function addOrg(){
+        var orgInfo = {};
+        orgInfo.orgName = document.getElementById("name").value;
+        orgInfo.orgContact = document.getElementById("contact").value;
+        orgInfo.orgOwner = document.getElementById("owner").value;
+        orgInfo.orgLocation = document.getElementById("location").value;
+        orgInfo.orgBagReq = document.getElementById("bagReq").value;
+        orgInfo.orgBagDist = document.getElementById("bagDist").value;
+        orgInfo.orgNotes = document.getElementById("notes").value;
+      google.script.run.withSuccessHandler(function(res){}).addOrganization(orgInfo);  
     }
 
     function loadSearchView(){
@@ -171,6 +192,14 @@
 
       if(e.target.matches(".edit-button")){
         loadView({func: "loadEditOrganizationView", callback: afterEditViewLoads, params: {org_Name: e.target.dataset.organizationName} });
+      }
+
+      if(e.target.matches("#save-changes")){
+        editOrg();
+      }
+
+      if(e.target.matches("#add-org")){
+        addOrg();
       }
 
     }
